@@ -1,25 +1,20 @@
 import logo from './logo.svg';
 import './App.css';
+import Header from './components/Header';
+import HomePage from './views/HomePage';
+import CompanyListPage from './views/CompanyListPage';
+import { Route, Routes } from 'react-router-dom';
+import FormPage from './views/FormPage';
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload 2.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header />
+      <Routes>
+          <Route path="/" Component={ HomePage }/>
+          <Route path="/companies" Component={ CompanyListPage }/>
+          <Route path="/form" Component={ FormPage}/>
+        </Routes>
     </div>
   );
 }
-
-export default App;

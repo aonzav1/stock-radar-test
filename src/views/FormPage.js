@@ -27,15 +27,17 @@ const FormPage = () => {
       showCancelButton: true,
       confirmButtonText: 'ยืนยัน',
       cancelButtonText: 'ยกเลิก',
+      confirmButtonColor: "#2563eb",
       reverseButtons: true
     }).then((result) => {
       if (result.isConfirmed) {
         console.log(`ชื่อ-สกุล: ${data.name} ${data.surname}\nEmail: ${data.email}\nเบอร์โทรศัพท์: ${data.tel}\nRef: ${data.ref}`);
-        Swal.fire(
-          'สำเร็จ!',
-          'แบบฟอร์มของคุณได้ถูกส่งเรียบร้อยแล้ว',
-          'success'
-        )
+        Swal.fire({
+          title: 'สำเร็จ!',
+          text: 'แบบฟอร์มของคุณได้ถูกส่งเรียบร้อยแล้ว',
+          icon: 'success',
+          confirmButtonColor: "#2563eb"
+        })
       }
     })
   }
@@ -48,9 +50,10 @@ const FormPage = () => {
   const inputFieldStyle = "w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500";
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-4 max-w-md mx-auto">แบบฟอร์มสำหรับลงทะเบียน</h1>
-      <form onSubmit={handleSubmit(onSubmit)} className="max-w-md mx-auto">
+    <div className="container mx-auto px-8 py-8">
+      <form onSubmit={handleSubmit(onSubmit)} className="max-w-md mx-auto flex flex-col justify-center text-gray-700">
+        <h1 className="text-2xl font-bold  m-2 mx-auto">Registration form</h1>
+        <h1 className="text-xl font-semibold text-gray-500 mb-4 mx-auto">แบบฟอร์มสำหรับลงทะเบียน</h1>
         <div className="mb-4">
           <label className="block mb-2">ชื่อ</label>
           <input type="text" id="name" {...register('name', { required: 'โปรดป้อนชื่อ' })} className={inputFieldStyle} />
@@ -76,7 +79,7 @@ const FormPage = () => {
           <input type="text" id="ref" {...register('ref')} className={inputFieldStyle} />
           {errors.ref && <p className="text-red-500 mt-2">{errors.ref.message}</p>}
         </div>
-        <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded">Submit</button>
+        <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white font-medium mt-3 py-3 px-6 rounded">สมัครสมาชิก</button>
       </form>
     </div>
   );
